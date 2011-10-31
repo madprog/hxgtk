@@ -1,0 +1,8 @@
+
+-cp ../
+-neko temp.n
+gtk.Lib
+gtk.Window
+-xml hxgtk.xml 
+-cmd haxedoc hxgtk.xml -f gtk
+-cmd rm temp.n

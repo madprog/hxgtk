@@ -1,0 +1,4 @@
+
+-cp ../
+-neko gtk_test.n
+-main TestGtk

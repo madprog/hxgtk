@@ -1,0 +1,5 @@
+<project name="hxgtk" url="https://github.com/tong/hxgtk" license="Public">
+	<user name="tong"/>
+	<description>HaXe/Neko GTK core subset</description>
+	<version name="0.1">Initial release</version>
+</project>

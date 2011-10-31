@@ -1,0 +1,17 @@
+
+HXGTK
+=====
+HaXe/Neko GTK core subset (no widgets)
+
+
+SOURCE
+------
+git://github.com/tong/hxgtk.git
+
+
+LINKS
+-----
+https://github.com/tong/hxgtk
+https://github.com/tong/hxwebkit
+https://github.com/tong/hxlibnotify
+
