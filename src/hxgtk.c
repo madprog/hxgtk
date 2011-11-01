@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdbool.h>
+
 #include <hxgtk.h>
+
+gboolean active = false;
 
 value hxgtk_init() {
 	if (!g_thread_supported ())
@@ -10,12 +11,16 @@ value hxgtk_init() {
 }
 
 value hxgtk_run() {
+	active = true;
 	gtk_main();
 	return val_null;
 }
 
 value hxgtk_quit() {
-	gtk_main_quit();
+	if( active ) {
+		active = false;
+		gtk_main_quit();
+	}
 	return val_null;
 }
 
