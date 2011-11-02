@@ -1,12 +1,7 @@
 
 HXGTK
 =====
-HaXe/Neko GTK core subset (no widgets)
-
-
-SOURCE
-------
-git://github.com/tong/hxgtk.git
+HaXe/Neko GTKWindow bindings
 
 
 LINKS

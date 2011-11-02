@@ -7,6 +7,8 @@ class TestGtk {
 		gtk.Lib.init();
 		trace( "GTK initialized." );
 		
+		var win = new gtk.Window("HXGtk");
+		
 		trace( "Starting GTK loop ..." );
 		gtk.Lib.run();
 		
