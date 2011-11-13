@@ -35,13 +35,21 @@ class Window {
 	var __i : Void;
 	
 	public function new( title : String, width : Int = 320, height : Int = 240 ) {
-		__i = _constructor( untyped title.__s, width, height, handleClose );
+		__i = _constructor( untyped title.__s, width, height );
+		var me = this;
+		_on_destroy( __i, function() me.onDestroy() );
 	}
 	
-	static function handleClose() {
-		trace("TOD==================O handleClose");
-	}
+	//TODO
 	
+	public dynamic function onDestroy() {}
+	
+	/*
+	static function handleSignal( id : Int, signal : String, data : Dynamic ) {
+	}
+	*/
+	
+	//public inline function show() _show(__i)
 	public inline function destroy() _destroy(__i)
 	
 	inline function getTitle() : String return _get_title(__i)
@@ -85,9 +93,13 @@ class Window {
 	public inline function setKeepBelow() _set_keep_below(__i)
 	public inline function resize(w:Int,h:Int) _resize(__i,w,h)
 	
-	static var _constructor = gtk.Lib.load( "window_constructor", 4 );
+	static var _constructor = gtk.Lib.load( "window_constructor", 3 );
 	
+	static var _on_destroy = x( "on_destroy", 1 );
+	
+	//static var _show = x( "show" );
 	static var _destroy = x( "destroy" );
+	
 	static var _get_title = x( "get_title" );
 	static var _set_title = x( "set_title", 1 );
 	static var _get_size = x( "get_size" );
