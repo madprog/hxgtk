@@ -4,6 +4,11 @@ HXGTK
 HaXe/Neko GTKWindow bindings
 
 
+SOURCE
+------
+git://github.com/tong/hxgtk.git
+
+
 LINKS
 -----
 https://github.com/tong/hxgtk

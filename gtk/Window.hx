@@ -15,6 +15,9 @@ enum WindowPosition {
 
 class Window {
 	
+	//static var list : Array<Window>;
+	//public static function closeAll() {}
+	
 	public var title(getTitle,setTitle) : String;
 	public var size(getSize,null) : {width:Int,height:Int};
 	public var resizeable(getResizeable,setResizeable) : Bool;
@@ -35,9 +38,11 @@ class Window {
 		__i = _constructor( untyped title.__s, width, height, handleClose );
 	}
 	
-	function handleClose() {
-		trace("TODO handleClose");
+	static function handleClose() {
+		trace("TOD==================O handleClose");
 	}
+	
+	public inline function destroy() _destroy(__i)
 	
 	inline function getTitle() : String return _get_title(__i)
 	inline function setTitle(v:String) return _set_title(__i,untyped v.__s)
@@ -82,6 +87,7 @@ class Window {
 	
 	static var _constructor = gtk.Lib.load( "window_constructor", 4 );
 	
+	static var _destroy = x( "destroy" );
 	static var _get_title = x( "get_title" );
 	static var _set_title = x( "set_title", 1 );
 	static var _get_size = x( "get_size" );

@@ -2,7 +2,13 @@
 class TestGtk {
 	
 	static function main() {
-	
+		
+		neko.vm.Ui;
+		
+		//trace( neko.vm.Ui.isMainThread() );
+		neko.vm.Ui.loop();
+
+		/* 
 		trace( "Initializing GTK ..." );
 		gtk.Lib.init();
 		trace( "GTK initialized." );
@@ -15,6 +21,8 @@ class TestGtk {
 		trace( "GTK quit ..." );
 		gtk.Lib.quit();
 		trace( "GTK finished." );
+		*/
+		
 	}
 	
 }

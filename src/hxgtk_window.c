@@ -3,10 +3,36 @@
 
 DEFINE_KIND(k_window);
 
+/*
+struct _window {
+	GtkWidget *gwindow;
+	GtkWidget *xt_bin;
+	NPWindow npwin;
+	void *flash;
+	on_event evt;
+	on_npevent npevent;
+	private_data *p;
 
-void cb_window_close( value *cb ) {
-	printf("TODO Handke window close !!!!\n");
-	//val_call0(*cb);
+	enum WindowFlags flags;
+};
+*/
+
+/*
+value hxgtk_window_init() {
+	printf("OKOKOKOKOKOiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiKOKOKOKOKOKOKOKOKOKOKOKOK\n");
+	return val_null;
+}
+DEFINE_PRIM(hxgtk_window_init,0);
+*/
+
+static int num_windows_created = 0;
+static value *function_storage = NULL;
+
+static void cb_destroy(GtkWidget *widget, gpointer data) {
+	//gtk_main_quit();
+	printf("DESTROY\n");
+	//printf("DESTROY %i \n", GPOINTER_TO_INT(data));
+	val_call0(*function_storage);
 }
 
 
@@ -15,9 +41,14 @@ value hxgtk_window_constructor(value title, value width, value height, value onC
 	val_check( title, string);
 	val_check( width, int);
 	val_check( height, int);
+
 	val_check_function(onClose,0);
-	value *cb_close = alloc_root(1);
-	*cb_close = onClose;
+
+	function_storage = alloc_root(1);
+	*function_storage = onClose;
+	//value *cb_close = alloc_root(1);
+	//*cb_close = onClose;
+	//val_call0(*function_storage);
 
 	GtkWidget* win;
 	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -29,9 +60,16 @@ value hxgtk_window_constructor(value title, value width, value height, value onC
 	//gtk_window_set_decorated(true);
 	//gtk_window_set_deletable
 	//gtk_widget_show_all(win);
-	g_signal_connect(win, "destroy", G_CALLBACK(cb_window_close), cb_close );
+	//char *v = "rotz";
+
+
+	g_signal_connect(win, "destroy", G_CALLBACK(cb_destroy), &num_windows_created );
+	//g_signal_connect(win, "destroy", G_CALLBACK(destroy), cb_close );
+
 	//g_signal_connect(G_OBJECT(win), "expose-event", G_CALLBACK(expose_cb), sink); // brought to the foreground callback
 	//g_signal_connect(G_OBJECT(win), "key-press-event", G_CALLBACK(key_press_event_cb), sink);
+
+	num_windows_created++;
 
 	return alloc_abstract(k_window, win);
 }
