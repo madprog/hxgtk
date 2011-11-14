@@ -3,7 +3,7 @@ OS := $(shell uname)
 PROJECT := gtk
 NDLL := ndll/$(OS)/$(PROJECT).ndll
 INSTALL_PATH := /usr/lib/neko
-OBJS = src/hxgtk.o src/hxgtk_window.o
+OBJS = src/hxg_timer.o src/hxgtk.o src/hxgtk_window.o
 
 all: $(NDLL)
 

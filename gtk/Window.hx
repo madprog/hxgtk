@@ -49,7 +49,7 @@ class Window {
 	}
 	*/
 	
-	//public inline function show() _show(__i)
+	public inline function show() _show(__i)
 	public inline function destroy() _destroy(__i)
 	
 	inline function getTitle() : String return _get_title(__i)
@@ -90,14 +90,14 @@ class Window {
 	public inline function fullscreen() _fullscreen(__i)
 	public inline function unfullscreen() _unfullscreen(__i)
 	public inline function setKeepAbove() _set_keep_above(__i)
-	public inline function setKeepBelow() _set_keep_below(__i)
+	public inline function setKeepBelow(v:Bool) _set_keep_below(__i,v)
 	public inline function resize(w:Int,h:Int) _resize(__i,w,h)
 	
 	static var _constructor = gtk.Lib.load( "window_constructor", 3 );
 	
 	static var _on_destroy = x( "on_destroy", 1 );
 	
-	//static var _show = x( "show" );
+	static var _show = x( "show" ); //remmve
 	static var _destroy = x( "destroy" );
 	
 	static var _get_title = x( "get_title" );
